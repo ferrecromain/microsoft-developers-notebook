@@ -1,6 +1,6 @@
 ﻿namespace DotnetSampleSolution.Core.Entities
 {
-    internal class UserEntity
+    public class UserEntity
     {
         public int Id { get; set; }
         public string? FirstName { get; set; }
