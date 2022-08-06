@@ -1,6 +1,8 @@
-﻿namespace DotnetSampleSolution.Core.Entities
+﻿using DotnetSampleSolution.Core.Contracts;
+
+namespace DotnetSampleSolution.Core.Entities
 {
-    public class UserEntity
+    public class UserEntity : IEntity<int>
     {
         public int Id { get; set; }
         public string? FirstName { get; set; }
