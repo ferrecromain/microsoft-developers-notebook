@@ -6,7 +6,7 @@ namespace DotnetSampleSolution.Core.Contracts
         where TEntity : IEntity<TKey> 
         where TKey : IEquatable<TKey>
     {
-        Task<TEntity> GetByIdAsync(TKey id);
+        Task<TEntity?> GetByIdAsync(TKey id);
         Task<IEnumerable<TEntity>> GetAllAsync();
         Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> filter);
     }

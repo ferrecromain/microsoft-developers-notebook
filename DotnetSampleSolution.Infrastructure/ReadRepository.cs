@@ -8,7 +8,7 @@ namespace DotnetSampleSolution.Infrastructure
         where TEntity : class, IEntity<TKey>
         where TKey : IEquatable<TKey>
     {
-        private readonly DbContext _dbContext;
+        protected readonly DbContext _dbContext;
 
         public ReadRepository(DbContext dbContext)
         {
@@ -24,9 +24,9 @@ namespace DotnetSampleSolution.Infrastructure
             return await _dbContext.Set<TEntity>().ToListAsync();
         }
 
-        public async Task<TEntity> GetByIdAsync(TKey id)
+        public async Task<TEntity?> GetByIdAsync(TKey id)
         {
-            return await _dbContext.Set<TEntity>().SingleAsync(e => e.Id.Equals(id));
+            return await _dbContext.Set<TEntity>().SingleOrDefaultAsync(e => e.Id.Equals(id));
         }
     }
 }

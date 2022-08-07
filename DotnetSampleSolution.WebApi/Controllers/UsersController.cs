@@ -10,11 +10,11 @@ namespace DotnetSampleSolution.WebApi.Controllers
     [Route("[controller]")]
     public class UsersController : ControllerBase
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UsersController(IUserRepository userRepository)
+        public UsersController(IUnitOfWork unitOfWork)
         {
-            _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
 
         /// <summary>
@@ -22,10 +22,39 @@ namespace DotnetSampleSolution.WebApi.Controllers
         /// </summary>
         /// <returns>List of users</returns>
         [HttpGet]
-        public async Task<IEnumerable<UserGetDtm>> GetAllAsync()
+        public async Task<ActionResult<IEnumerable<UserGetDtm>>> GetAllAsync()
         {
-            IEnumerable<UserEntity> userEntities = await _userRepository.GetAllAsync();
-            return userEntities.Select(e => new UserGetDtm(e));
+            IEnumerable<UserEntity> userEntities = await _unitOfWork.UserRepository.GetAllAsync();
+            return Ok(userEntities.Select(e => new UserGetDtm(e)));
+        }
+
+        /// <summary>
+        /// Get an user by its identifier
+        /// </summary>
+        /// <param name="id">User identifier</param>
+        /// <returns>A single user or NotFound</returns>
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<UserGetDtm>> GetByIdAsync(int id)
+        {
+            UserEntity? userEntity = await _unitOfWork.UserRepository.GetByIdAsync(id);
+            if(userEntity == null)
+            {
+                return NotFound();
+            }
+            return Ok(new UserGetDtm(userEntity));
+        }
+
+        /// <summary>
+        /// Create a new user
+        /// </summary>
+        /// <param name="dtm">User to create</param>
+        [HttpPost]
+        public async Task<IActionResult> AddAsync(UserPostDtm dtm)
+        {
+            UserEntity userEntity = new();
+            _unitOfWork.UserRepository.Add(dtm.MapTo(userEntity));
+            await _unitOfWork.SaveAsync();
+            return CreatedAtAction(nameof(AddAsync), new { userEntity.Id }, dtm);
         }
     }
 }
