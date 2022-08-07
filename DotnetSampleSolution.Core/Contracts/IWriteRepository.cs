@@ -4,7 +4,7 @@
         where TEntity : IEntity<TKey>
         where TKey : IEquatable<TKey>
     {
-        void Add(TEntity entity);
+        Task AddAsync(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);
     }

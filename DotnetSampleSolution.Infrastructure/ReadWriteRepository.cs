@@ -10,14 +10,14 @@ namespace DotnetSampleSolution.Infrastructure
         where TKey : IEquatable<TKey>
     {
         public ReadWriteRepository(DbContext dbContext) : base(dbContext) { }
-        public void Add(TEntity entity)
+        public async Task AddAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            await _dbContext.AddAsync(entity);
         }
 
         public void Delete(TEntity entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Remove(entity);
         }
 
         public void Update(TEntity entity)

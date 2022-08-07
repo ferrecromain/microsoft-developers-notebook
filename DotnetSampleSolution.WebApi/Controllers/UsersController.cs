@@ -2,7 +2,6 @@
 using DotnetSampleSolution.Core.Entities;
 using DotnetSampleSolution.WebApi.Dtms.User;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
 namespace DotnetSampleSolution.WebApi.Controllers
 {
@@ -52,9 +51,26 @@ namespace DotnetSampleSolution.WebApi.Controllers
         public async Task<IActionResult> AddAsync(UserPostDtm dtm)
         {
             UserEntity userEntity = new();
-            _unitOfWork.UserRepository.Add(dtm.MapTo(userEntity));
+            await _unitOfWork.UserRepository.AddAsync(dtm.MapTo(userEntity));
             await _unitOfWork.SaveAsync();
             return CreatedAtAction(nameof(AddAsync), new { userEntity.Id }, dtm);
+        }
+
+        /// <summary>
+        /// Delete a user
+        /// </summary>
+        /// <param name="id">User identifier</param>
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            UserEntity? userEntity = await _unitOfWork.UserRepository.GetByIdAsync(id);
+            if(userEntity is null)
+            {
+                return NotFound();
+            }
+            _unitOfWork.UserRepository.Delete(userEntity);
+            await _unitOfWork.SaveAsync();
+            return NoContent();
         }
     }
 }
