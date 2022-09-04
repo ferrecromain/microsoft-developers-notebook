@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace DotnetSampleSolution.Infrastructure
+namespace DotnetSampleSolution.Infrastructure.Data.Repositories
 {
-    public class ReadRepository<TEntity, TKey> : IReadRepository<TEntity, TKey> 
+    public class ReadRepository<TEntity, TKey> : IReadRepository<TEntity, TKey>
         where TEntity : class, IEntity<TKey>
         where TKey : IEquatable<TKey>
     {

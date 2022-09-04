@@ -8,6 +8,7 @@ namespace DotnetSampleSolution.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<UserEntity> builder)
         {
+            builder.HasKey(p => p.Id);
             builder.HasData(
                 new UserEntity() { Id = 1, FirstName = "Michael", LastName = "Wilson", Birthday = new DateTime(1989, 5, 12), Email = "michael.wilson@company.tld" },
                 new UserEntity() { Id = 2, FirstName = "Jerry", LastName = "Whitehall", Birthday = new DateTime(1979, 10, 2), Email = "jerry.whitehall@company.tld" },

@@ -1,4 +1,5 @@
-using DotnetSampleSolution.Infrastructure;
+using DotnetSampleSolution.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotnetSampleSolution.WebApi
 {
@@ -25,8 +26,6 @@ namespace DotnetSampleSolution.WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseAuthorization();
 

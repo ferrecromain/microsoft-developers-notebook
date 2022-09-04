@@ -1,10 +1,10 @@
 ﻿using DotnetSampleSolution.Core.Contracts;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotnetSampleSolution.Infrastructure
+namespace DotnetSampleSolution.Infrastructure.Data.Repositories
 {
-    public class ReadWriteRepository<TEntity, TKey> : 
-        ReadRepository<TEntity, TKey>, 
+    public class ReadWriteRepository<TEntity, TKey> :
+        ReadRepository<TEntity, TKey>,
         IReadWriteRepository<TEntity, TKey>
         where TEntity : class, IEntity<TKey>
         where TKey : IEquatable<TKey>

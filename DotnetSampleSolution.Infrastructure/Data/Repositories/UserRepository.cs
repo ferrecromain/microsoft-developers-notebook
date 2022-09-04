@@ -2,7 +2,7 @@
 using DotnetSampleSolution.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotnetSampleSolution.Infrastructure
+namespace DotnetSampleSolution.Infrastructure.Data.Repositories
 {
     public class UserRepository : ReadWriteRepository<UserEntity, int>, IUserRepository
     {

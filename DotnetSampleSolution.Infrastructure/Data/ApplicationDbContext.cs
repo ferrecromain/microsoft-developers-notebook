@@ -3,16 +3,17 @@ using DotnetSampleSolution.Infrastructure.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DotnetSampleSolution.Infrastructure
+namespace DotnetSampleSolution.Infrastructure.Data
 {
     public class ApplicationDbContext : DbContext
     {
         /// <remarks>
         /// * Warning CS8618 : https://docs.microsoft.com/fr-fr/ef/core/miscellaneous/nullable-reference-types#dbcontext-and-dbset
         /// </remarks>
-        public ApplicationDbContext(DbContextOptions options) : base(options) { }
         public DbSet<UserEntity> Users { get; set; } = null!;
         public DbSet<GroupEntity> Groups { get; set; } = null!;
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,6 +25,7 @@ namespace DotnetSampleSolution.Infrastructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new GroupConfiguration());
         }
     }
 }
