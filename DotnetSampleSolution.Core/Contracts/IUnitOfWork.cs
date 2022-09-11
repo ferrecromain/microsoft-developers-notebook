@@ -2,7 +2,7 @@
 {
     public interface IUnitOfWork
     {
-        public IUserRepository UserRepository { get; }
+        public ILoyaltyCardRepository LoyaltyCardRepository { get; }
         Task SaveAsync();
     }
 }

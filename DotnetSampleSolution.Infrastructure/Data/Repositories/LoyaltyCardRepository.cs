@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DotnetSampleSolution.Infrastructure.Data.Repositories
 {
-    public class UserRepository : ReadWriteRepository<UserEntity, int>, IUserRepository
+    public class LoyaltyCardRepository : ReadWriteRepository<LoyaltyCardEntity, int>, ILoyaltyCardRepository
     {
-        public UserRepository(DbContext dbContext) : base(dbContext) { }
+        public LoyaltyCardRepository(DbContext dbContext) : base(dbContext) { }
     }
 }

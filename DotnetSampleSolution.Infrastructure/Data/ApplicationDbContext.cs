@@ -10,7 +10,7 @@ namespace DotnetSampleSolution.Infrastructure.Data
         /// <remarks>
         /// * Warning CS8618 : https://docs.microsoft.com/fr-fr/ef/core/miscellaneous/nullable-reference-types#dbcontext-and-dbset
         /// </remarks>
-        public DbSet<UserEntity> Users { get; set; } = null!;
+        public DbSet<LoyaltyCardEntity> loyaltyCards { get; set; } = null!;
         public DbSet<GroupEntity> Groups { get; set; } = null!;
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
@@ -24,7 +24,7 @@ namespace DotnetSampleSolution.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new LoyaltyCardConfiguration());
             modelBuilder.ApplyConfiguration(new GroupConfiguration());
         }
     }

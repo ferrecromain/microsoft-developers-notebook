@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DotnetSampleSolution.Infrastructure.Data
 {
-    internal class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContext _dbContext;
+        private readonly ApplicationDbContext _dbContext;
 
-        public IUserRepository UserRepository => new UserRepository(_dbContext);
+        public ILoyaltyCardRepository LoyaltyCardRepository => new LoyaltyCardRepository(_dbContext);
         public IGroupRepository GroupRepository => new GroupRepository(_dbContext);
 
-        public UnitOfWork(DbContext dbContext)
+        public UnitOfWork(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
