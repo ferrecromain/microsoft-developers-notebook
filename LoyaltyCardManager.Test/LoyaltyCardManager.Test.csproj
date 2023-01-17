@@ -26,4 +26,8 @@
     <ProjectReference Include="..\LoyaltyCardManager.WebApi\LoyaltyCardManager.WebApi.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UnitTests\" />
+  </ItemGroup>
+
 </Project>

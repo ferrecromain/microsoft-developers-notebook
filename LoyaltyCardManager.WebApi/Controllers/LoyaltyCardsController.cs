@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LoyaltyCardManager.WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/api/loyalty-cards")]
     public class LoyaltyCardsController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -46,14 +46,32 @@ namespace LoyaltyCardManager.WebApi.Controllers
         /// <summary>
         /// Create a new loyalty card
         /// </summary>
-        /// <param name="dtm">Loyalty card to create</param>
+        /// <param name="dto">Loyalty card to create</param>
         [HttpPost]
-        public async Task<IActionResult> AddAsync(LoyaltyCardPostDtm dtm)
+        public async Task<IActionResult> AddAsync(LoyaltyCardPostDtm dto)
         {
             LoyaltyCardEntity loyaltyCardEntity = new();
-            await _unitOfWork.LoyaltyCardRepository.AddAsync(dtm.MapTo(loyaltyCardEntity));
+            await _unitOfWork.LoyaltyCardRepository.AddAsync(dto.MapTo(loyaltyCardEntity));
             await _unitOfWork.SaveAsync();
-            return CreatedAtAction(nameof(AddAsync), new { loyaltyCardEntity.Id }, dtm);
+            return CreatedAtAction(nameof(AddAsync), new { loyaltyCardEntity.Id }, dto);
+        }
+
+        /// <summary>
+        /// Update a loyalty card
+        /// </summary>
+        /// <param name="id">Loyalty card identifier</param>
+        /// <param name="dto">Loyalty card data</param>
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> PutAsync(int id, LoyaltyCardPutDtm dto)
+        {
+            LoyaltyCardEntity? loyaltyCardEntity = await _unitOfWork.LoyaltyCardRepository.GetAsync(id);
+            if (loyaltyCardEntity is null)
+            {
+                return NotFound();
+            }
+            _unitOfWork.LoyaltyCardRepository.Update(dto.MapTo(loyaltyCardEntity));
+            await _unitOfWork.SaveAsync();
+            return NoContent();
         }
 
         /// <summary>
