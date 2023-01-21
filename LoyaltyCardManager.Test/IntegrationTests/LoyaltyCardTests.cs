@@ -26,7 +26,6 @@ namespace LoyaltyCardManager.Test.IntegrationTests
             };
 
             HttpResponseMessage postResponse = await _httpClient.PostAsJsonAsync("/api/loyalty-cards", postDto);
-            string postContent = await postResponse.Content.ReadAsStringAsync();
 
             // Act
             HttpResponseMessage getResponse = await _httpClient.GetAsync(postResponse.Headers.Location!.LocalPath);
@@ -62,9 +61,9 @@ namespace LoyaltyCardManager.Test.IntegrationTests
 
             // Act
             HttpResponseMessage getResponse = await _httpClient.GetAsync("/api/loyalty-cards");
-            IEnumerable<LoyaltyCardGetDtm> getDtos = (await getResponse.Content.ReadFromJsonAsync<IEnumerable<LoyaltyCardGetDtm>>())!.OrderBy(p => p.Id);
-            LoyaltyCardGetDtm getDto1 = getDtos.ElementAt(0);
-            LoyaltyCardGetDtm getDto2 = getDtos.ElementAt(1);
+            IEnumerable<LoyaltyCardGetDtm> getDtos = (await getResponse.Content.ReadFromJsonAsync<IEnumerable<LoyaltyCardGetDtm>>())!.OrderByDescending(p => p.Id);
+            LoyaltyCardGetDtm getDto1 = getDtos.ElementAt(1);
+            LoyaltyCardGetDtm getDto2 = getDtos.ElementAt(0);
             await _httpClient.DeleteAsync(postResponse1.Headers.Location!.LocalPath);
             await _httpClient.DeleteAsync(postResponse2.Headers.Location!.LocalPath);
 

@@ -1,5 +1,6 @@
 ﻿using LoyaltyCardManager.Core.Contracts;
 using LoyaltyCardManager.Core.Entities;
+using System.Text.Json.Serialization;
 
 namespace LoyaltyCardManager.WebApi.Dtms.LoyaltyCard
 {
@@ -9,6 +10,7 @@ namespace LoyaltyCardManager.WebApi.Dtms.LoyaltyCard
         public string? MerchantName { get; set; }
         public string? MembershipId { get; set; }
 
+        public LoyaltyCardGetDtm() { }
         public LoyaltyCardGetDtm(LoyaltyCardEntity entity)
         {
             Id = entity.Id;
