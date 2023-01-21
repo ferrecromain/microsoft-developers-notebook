@@ -26,6 +26,7 @@ namespace LoyaltyCardManager.Test.IntegrationTests
             };
 
             HttpResponseMessage postResponse = await _httpClient.PostAsJsonAsync("/api/loyalty-cards", postDto);
+            string postContent = await postResponse.Content.ReadAsStringAsync();
 
             // Act
             HttpResponseMessage getResponse = await _httpClient.GetAsync(postResponse.Headers.Location!.LocalPath);

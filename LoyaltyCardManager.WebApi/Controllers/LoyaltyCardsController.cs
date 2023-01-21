@@ -50,10 +50,10 @@ namespace LoyaltyCardManager.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAsync(LoyaltyCardPostDtm dto)
         {
-            LoyaltyCardEntity loyaltyCardEntity = new();
-            await _unitOfWork.LoyaltyCardRepository.AddAsync(dto.MapTo(loyaltyCardEntity));
+            LoyaltyCardEntity entity = new();
+            await _unitOfWork.LoyaltyCardRepository.AddAsync(dto.MapTo(entity));
             await _unitOfWork.SaveAsync();
-            return CreatedAtAction(nameof(AddAsync), new { loyaltyCardEntity.Id }, dto);
+            return CreatedAtAction(nameof(GetByIdAsync), new { id = entity.Id }, new LoyaltyCardGetDtm(entity));
         }
 
         /// <summary>

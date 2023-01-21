@@ -9,6 +9,7 @@ namespace LoyaltyCardManager.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<LoyaltyCardEntity> builder)
         {
             builder.HasKey(p => p.Id);
+            builder.ToTable("LoyaltyCard");
             builder.HasData(
                 new LoyaltyCardEntity() { Id = 1, MerchantName = "Los pollos hermanos", MembershipId = "0035595443", GroupId = 1 },
                 new LoyaltyCardEntity() { Id = 2, MerchantName = "Big Kahuna burger", MembershipId = "2178445", GroupId = 1 },
