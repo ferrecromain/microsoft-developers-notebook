@@ -3,6 +3,7 @@
     public interface IUnitOfWork
     {
         public ILoyaltyCardRepository LoyaltyCardRepository { get; }
+        public IGroupRepository GroupRepository { get; }
         Task SaveAsync();
     }
 }

@@ -30,7 +30,7 @@ namespace LoyaltyCardManager.WebApi.Controllers
         /// <summary>
         /// Get an loyalty card by its identifier
         /// </summary>
-        /// <param name="id">Loyalty cards identifier</param>
+        /// <param name="id">Loyalty card identifier</param>
         /// <returns>A single loyalty card or NotFound</returns>
         [HttpGet("{id:int}")]
         public async Task<ActionResult<LoyaltyCardGetDtm>> GetByIdAsync(int id)
@@ -77,7 +77,7 @@ namespace LoyaltyCardManager.WebApi.Controllers
         /// <summary>
         /// Delete a loyalty card
         /// </summary>
-        /// <param name="id">loyalty card identifier</param>
+        /// <param name="id">Loyalty card identifier</param>
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {

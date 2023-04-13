@@ -8,11 +8,11 @@ namespace LoyaltyCardManager.WebApi.Dtms.LoyaltyCard
         public string? MerchantName { get; set; }
         public string? MembershipId { get; set; }
 
-        public LoyaltyCardEntity MapTo(LoyaltyCardEntity model)
+        public LoyaltyCardEntity MapTo(LoyaltyCardEntity entity)
         {
-            model.MerchantName = MerchantName;
-            model.MembershipId = MembershipId;
-            return model;
+            entity.MerchantName = MerchantName;
+            entity.MembershipId = MembershipId;
+            return entity;
         }
     }
 }
