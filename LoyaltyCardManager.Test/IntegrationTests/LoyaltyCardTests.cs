@@ -16,7 +16,7 @@ namespace LoyaltyCardManager.Test.IntegrationTests
         }
 
         [Fact]
-        public async Task GetById_WhenIdIsValid_ReturnScheduler()
+        public async Task GetById_WhenIdIsValid_ReturnLoyaltyCard()
         {
             // Arrange
             LoyaltyCardPostDtm postDto = new()
@@ -100,7 +100,7 @@ namespace LoyaltyCardManager.Test.IntegrationTests
         }
 
         [Fact]
-        public async Task Update_WhenIdIsValid_DeleteScheduler()
+        public async Task Update_WhenIdIsValid_UpdateLoyaltyCard()
         {
             // Arrange
             LoyaltyCardPostDtm postDto = new()
@@ -129,9 +129,8 @@ namespace LoyaltyCardManager.Test.IntegrationTests
             Assert.Equal(putDto.MembershipId, getDto.MembershipId);
         }
 
-
         [Fact]
-        public async Task Delete_WhenIdIsValid_DeleteScheduler()
+        public async Task Delete_WhenIdIsValid_DeleteLoyaltyCard()
         {
             // Arrange
             LoyaltyCardPostDtm postDto = new()
