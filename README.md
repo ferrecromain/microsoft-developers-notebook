@@ -37,8 +37,21 @@ L'architure mise en place dans ce projet est l'**architecture hexagonale**, à p
         - Repository
             - IReadRepository
             - IReadWriteRepository
+        - Service
+            - IUserService
+            - IGroupService
     - Entities 
         - UserEntity
         - GroupEntity 
 - Infrastructure
     - Repositories
+- SharedKernel
+    - Services
+        - ExportService
+            - ToCsv
+            - ToXls
+- Business
+    - Services
+        - UserService
+        - GroupService
+        
